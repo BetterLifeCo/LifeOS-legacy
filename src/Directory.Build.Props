@@ -1,0 +1,69 @@
+<Project>
+
+  <PropertyGroup Label="PackageInfo">
+    <Authors>Alexis;Jamesb</Authors>
+    <Copyright>© BetterLifeCo</Copyright>
+    <Company>BetterLifeCo</Company>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Package Settings">
+    <PackageOutputPath Condition=" '$(PackageOutputPath)' == '$(SolutionDir)releases\' ">$(SolutionDir)releases\nupkg\</PackageOutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Build">
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>67;NU1605;$(NoWarn)</NoWarn>
+    <CodeAnalysisRuleSet>$(SolutionDir)src\CodeStyle.ruleset</CodeAnalysisRuleSet>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Build (Paths)">
+    <ProjectName Condition=" '$(ProjectName)' == '' ">$(MSBuildProjectName)</ProjectName>
+    <BaseOutputPath>$(SolutionDir)build\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(BaseOutputPath)obj\$(ProjectName)\</BaseIntermediateOutputPath>
+    <OutputPath Condition=" '$(OutputPath)' == '' ">$(BaseOutputPath)$(ProjectName)\$(Configuration)\$(Platform)\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Build (C++ Paths)" Condition=" '$(MSBuildProjectExtension)'=='.vcxproj' ">
+    <Platform Condition=" '$(Platform)' == '' OR '$(Platform)' == 'AnyCPU' ">Win32</Platform>
+    <IntDir>$(BaseIntermediateOutputPath)$(Configuration)\$(Platform)\</IntDir>
+    <OutDir>$(OutputPath)$(ProjectName)\$(Platform)\</OutDir>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Build (Debug*)" Condition=" $(Configuration.ToLower().StartsWith('debug')) ">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Build (Debug-InProd)" Condition=" '$(Configuration.ToLower())' == 'debug-inprod' ">
+    <DefineConstants>DEBUG_IN_PROD;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Build (Release)" Condition=" '$(Configuration.ToLower())' == 'release' ">
+    <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Build (x86)" Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="Automatic Version 2">
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <UpdatePackageVersion>False</UpdatePackageVersion>
+    <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
+    <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
+    <AssemblyVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.None</AssemblyVersionSettings>
+    <AssemblyFileVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.None</AssemblyFileVersionSettings>
+    <AssemblyInfoVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.None</AssemblyInfoVersionSettings>
+  </PropertyGroup>
+
+</Project>

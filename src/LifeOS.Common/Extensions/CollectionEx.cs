@@ -21,8 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Modified On:  2020/02/29 21:15
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +29,26 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Extensions
 {
-  using System.Windows;
+  using System.Collections.ObjectModel;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class CollectionEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static bool Replace<TCol, T1, T2>(this Collection<TCol> col, T1 old, T2 @new)
+      where T1 : TCol
+      where T2 : TCol
     {
-      InitializeComponent();
+      int oldIdx = col.IndexOf(old);
+
+      if (oldIdx < 0)
+        return false;
+
+      col[oldIdx] = @new;
+
+      return true;
     }
 
     #endregion

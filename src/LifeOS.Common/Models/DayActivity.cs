@@ -19,30 +19,39 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Models
 {
-  using System.Windows;
+  using System.Collections.Generic;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public class DayActivity
   {
     #region Constructors
 
-    public MainWindow()
+    public DayActivity() { }
+
+    public DayActivity(ActivityTimeSlot timeSlot, string activityTitle, IEnumerable<DayActivity> subActivities)
     {
-      InitializeComponent();
+      TimeSlot      = timeSlot;
+      ActivityTitle = activityTitle;
+      SubActivities = subActivities;
     }
+
+    #endregion
+
+
+
+
+    #region Properties & Fields - Public
+
+    public ActivityTimeSlot         TimeSlot      { get; }
+    public string                   ActivityTitle { get; }
+    public IEnumerable<DayActivity> SubActivities { get; }
 
     #endregion
   }

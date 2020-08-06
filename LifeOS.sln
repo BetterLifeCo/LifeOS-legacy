@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeOS.WPF", "src\LifeOS.WP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifeOS.Common", "src\LifeOS.Common\LifeOS.Common.csproj", "{1C797B0D-1270-4295-98CB-45A5A0CC4AF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeOS.Common.WPF", "src\LifeOS.Common.WPF\LifeOS.Common.WPF.csproj", "{03D7372E-FC7A-451B-9388-A2E50990423A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1C797B0D-1270-4295-98CB-45A5A0CC4AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C797B0D-1270-4295-98CB-45A5A0CC4AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C797B0D-1270-4295-98CB-45A5A0CC4AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D7372E-FC7A-451B-9388-A2E50990423A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D7372E-FC7A-451B-9388-A2E50990423A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D7372E-FC7A-451B-9388-A2E50990423A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D7372E-FC7A-451B-9388-A2E50990423A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

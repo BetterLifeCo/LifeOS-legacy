@@ -19,29 +19,40 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Extensions
 {
-  using System.Windows;
+  using System.Windows.Automation.Peers;
+  using System.Windows.Automation.Provider;
+  using System.Windows.Controls;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class ButtonEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static bool SimulateClick(this Button btn)
     {
-      InitializeComponent();
+      ButtonAutomationPeer peer       = new ButtonAutomationPeer(btn);
+      IInvokeProvider      invokeProv = peer.GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+
+      if (invokeProv == null)
+        return false;
+
+      try
+      {
+        invokeProv.Invoke();
+
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
     }
 
     #endregion

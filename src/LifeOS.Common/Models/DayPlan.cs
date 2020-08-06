@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2020/08/05 20:14
+// Modified On:  2020/08/05 20:57
 // Modified By:  Alexis
 
 #endregion
@@ -30,19 +30,29 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Models
 {
-  using System.Windows;
+  using System;
+  using System.Collections.ObjectModel;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public class DayPlan
   {
     #region Constructors
 
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
+    public DayPlan(DateTime day) { }
+
+    public DayPlan() : this(DateTime.Now) { }
+
+    #endregion
+
+
+
+
+    #region Properties & Fields - Public
+
+    public DateTime Day { get; set; }
+
+    public ObservableCollection<DayActivity> Activities { get; set; }
 
     #endregion
   }

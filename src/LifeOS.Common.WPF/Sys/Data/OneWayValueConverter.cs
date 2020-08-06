@@ -19,30 +19,43 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Sys.Data
 {
-  using System.Windows;
+  using System;
+  using System.Globalization;
+  using System.Windows.Data;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public abstract class OneWayValueConverter : IValueConverter
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    /// <inheritdoc />
+    public object ConvertBack(object      value,
+                              Type        targetType,
+                              object      parameter,
+                              CultureInfo culture)
     {
-      InitializeComponent();
+      throw new NotImplementedException();
     }
+
+    #endregion
+
+
+
+
+    #region Methods Abs
+
+    /// <inheritdoc />
+    public abstract object Convert(object      value,
+                                   Type        targetType,
+                                   object      parameter,
+                                   CultureInfo culture);
 
     #endregion
   }

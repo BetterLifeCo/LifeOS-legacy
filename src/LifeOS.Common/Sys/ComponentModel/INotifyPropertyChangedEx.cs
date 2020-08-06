@@ -21,8 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Modified On:  2020/03/11 15:25
 // Modified By:  Alexis
 
 #endregion
@@ -30,20 +29,23 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Sys.ComponentModel
 {
-  using System.Windows;
+  using System.ComponentModel;
+  using Newtonsoft.Json;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  /// <summary>
+  ///   Extends <see cref="INotifyPropertyChanged" /> interface to add
+  ///   <see cref="IsChanged" /> for usage with Fody.PropertyChanged.
+  ///   https://github.com/Fody/PropertyChanged/wiki/Implementing-An-IsChanged-Flag
+  /// </summary>
+  public interface INotifyPropertyChangedEx : INotifyPropertyChanged
   {
-    #region Constructors
-
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
-
-    #endregion
+    /// <summary>
+    ///   This flag is set to true by Fody.PropertyChanged when any weaved property's value is
+    ///   changed.
+    /// </summary>
+    [JsonIgnore]
+    bool IsChanged { get; set; }
   }
 }

@@ -21,8 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Modified On:  2020/02/17 18:04
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +29,20 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Sys.Windows.Net
 {
-  using System.Windows;
+  using System.Runtime.InteropServices;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class Wininet
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    [DllImport("wininet.dll")]
+    private static extern bool InternetGetConnectedState(out int description, int reservedValue);
+
+    public static bool HasNetworking()
     {
-      InitializeComponent();
+      return InternetGetConnectedState(out _, 0);
     }
 
     #endregion

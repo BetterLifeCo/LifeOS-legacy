@@ -19,29 +19,45 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Extensions
 {
+  using System;
+  using System.Linq;
   using System.Windows;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  /// <summary>Extension methods for System.Windows.Window</summary>
+  public static class WindowEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static void ShowAndActivate(this Window wdw)
     {
-      InitializeComponent();
+      wdw.Show();
+      wdw.ForceActivate();
+    }
+
+    public static bool IsWindowOpen<T>(string name = "") where T : Window
+    {
+      return string.IsNullOrEmpty(name)
+        ? Application.Current.Windows.OfType<T>().Any()
+        : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public static void ForceActivate(this Window wdw)
+    {
+      if (wdw.WindowState == WindowState.Minimized)
+        wdw.SetCurrentValue(Window.WindowStateProperty, WindowState.Normal);
+
+      wdw.Activate();
+      wdw.SetCurrentValue(Window.TopmostProperty, true);  // important
+      wdw.SetCurrentValue(Window.TopmostProperty, false); // important
+      wdw.Focus();                                        // important
     }
 
     #endregion

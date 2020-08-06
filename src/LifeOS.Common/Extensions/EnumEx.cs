@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2020/02/13 19:04
+// Modified On:  2020/02/13 19:04
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +30,17 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Extensions
 {
-  using System.Windows;
+  using System;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class EnumEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static string Name(this Enum e)
     {
-      InitializeComponent();
+      return Enum.GetName(e.GetType(), e);
     }
 
     #endregion

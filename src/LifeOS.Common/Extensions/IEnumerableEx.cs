@@ -21,8 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Modified On:  2020/02/02 23:00
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +29,41 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+
+
+// ReSharper disable PossibleMultipleEnumeration
+
+namespace LifeOS.Common.Extensions
 {
-  using System.Windows;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class IEnumerableEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static bool None<T>(this IEnumerable<T> elements)
     {
-      InitializeComponent();
+      return elements.Any() == false;
+    }
+
+    public static IEnumerable<T> ForEach<T>(this IEnumerable<T> elements,
+                                            Action<T>           action)
+    {
+      foreach (T elem in elements)
+        action(elem);
+
+      return elements;
+    }
+
+    public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+    {
+      HashSet<TKey> seenKeys = new HashSet<TKey>();
+
+      foreach (TSource element in source)
+        if (seenKeys.Add(keySelector(element)))
+          yield return element;
     }
 
     #endregion

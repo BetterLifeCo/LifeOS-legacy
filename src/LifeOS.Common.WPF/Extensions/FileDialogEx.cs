@@ -19,29 +19,32 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Extensions
 {
-  using System.Windows;
+  using System;
+  using System.Reflection;
+  using Microsoft.Win32;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  /// <summary>Extension methods for <see cref="FileDialog" /></summary>
+  public static class FileDialogEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    /// <summary>Shows the dialog with <paramref name="ownerHwnd" /> as the owner</summary>
+    /// <param name="dlg">The dialog to show</param>
+    /// <param name="ownerHwnd">The owner window</param>
+    /// <returns>Dialog result</returns>
+    public static bool RunDialog(this FileDialog dlg, IntPtr ownerHwnd)
     {
-      InitializeComponent();
+      return (bool)dlg.GetType()
+                      .GetMethod("RunDialog", BindingFlags.NonPublic | BindingFlags.Instance)
+                      .Invoke(dlg, new object[] { ownerHwnd });
     }
 
     #endregion

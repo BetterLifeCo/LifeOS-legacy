@@ -21,8 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Modified On:  2020/03/22 16:11
 // Modified By:  Alexis
 
 #endregion
@@ -30,20 +29,46 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+// ReSharper disable InvalidXmlDocComment
+
+namespace LifeOS.Common
 {
-  using System.Windows;
+  using System.Diagnostics.CodeAnalysis;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  /// <summary>
+  /// Contains LOS-related constants
+  /// </summary>
+  public static class LOSConst
   {
-    #region Constructors
+    #region Constants & Statics
 
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
+    /// <summary>The app name</summary>
+    public const string Name = "LifeOS";
+
+    /// <summary>The friendly app name</summary>
+    public const string FriendlyName = "Life OS";
+
+    /// <summary>The change log file name</summary>
+    public const string ChangeLogFileName = "ChangeLog";
 
     #endregion
+
+
+
+
+    /// <summary>Assemblies data</summary>
+    [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
+    public static class Assembly
+    {
+      #region Constants & Statics
+
+      /// <summary>SMA executable file name</summary>
+      public const string LiseOSExe = "LifeOS.exe";
+
+      /// <summary>The updater executable file name</summary>
+      public const string Updater = "Update.exe";
+
+      #endregion
+    }
   }
 }

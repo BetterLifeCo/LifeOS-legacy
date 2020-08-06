@@ -1,4 +1,13 @@
-﻿#region License & Metadata
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ActivityTimeSlot.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The activity time slot.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+#region License & Metadata
 
 // The MIT License (MIT)
 // 
@@ -21,7 +30,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
+// Created On:   2020/08/05 20:22
 // Modified On:  2020/08/05 20:56
 // Modified By:  Alexis
 
@@ -30,19 +39,26 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Models
 {
-  using System.Windows;
+  using NodaTime;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  /// <summary>
+  /// The activity time slot.
+  /// </summary>
+  public class ActivityTimeSlot
   {
-    #region Constructors
+    #region Properties & Fields - Non-Public
 
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
+    /// <summary>
+    /// Gets or sets the duration.
+    /// </summary>
+    private Duration   Duration { get; set; }
+
+    /// <summary>
+    /// Gets or sets the time.
+    /// </summary>
+    private OffsetTime Time     { get; set; }
 
     #endregion
   }

@@ -19,29 +19,28 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Sys.Data
 {
-  using System.Windows;
+  using System;
+  using System.Globalization;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public class TypeCastConverter : OneWayValueConverter
   {
-    #region Constructors
+    #region Methods Impl
 
-    public MainWindow()
+    /// <inheritdoc />
+    public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-      InitializeComponent();
+      if (!(parameter is Type castType))
+        throw new ArgumentException($"{nameof(parameter)} must be of type Type");
+
+      return System.Convert.ChangeType(value, castType, CultureInfo.InvariantCulture);
     }
 
     #endregion

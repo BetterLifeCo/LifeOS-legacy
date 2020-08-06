@@ -6,7 +6,7 @@
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
 // the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the
+// and/or sell copies of the Software, and to permit persons to whom the 
 // Software is furnished to do so, subject to the following conditions:
 // 
 // The above copyright notice and this permission notice shall be included in
@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2019/03/03 14:48
+// Modified On:  2019/03/03 14:48
 // Modified By:  Alexis
 
 #endregion
@@ -30,20 +30,7 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Sys.ComponentModel
 {
-  using System.Windows;
-
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
-  {
-    #region Constructors
-
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
-
-    #endregion
-  }
+  public delegate void PropertyChangedDelegate<in TSender, in TProp>(TSender owner, TProp before, TProp after);
 }

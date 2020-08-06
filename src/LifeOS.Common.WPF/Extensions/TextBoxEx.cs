@@ -21,8 +21,7 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Modified On:  2020/03/04 16:03
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +29,31 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Extensions
 {
-  using System.Windows;
+  using System;
+  using System.Windows.Controls;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class TextBoxEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static string[] SplitLines(this TextBox tb)
     {
-      InitializeComponent();
+      return tb.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+    }
+
+    public static string[] SplitLines(this TextBox tb, out int count)
+    {
+      var res = tb.SplitLines();
+      count = res.Length;
+
+      return res;
+    }
+
+    public static bool IsScrolledToEnd(this TextBox tb)
+    {
+      return tb.VerticalOffset > tb.ExtentHeight - tb.ViewportHeight - tb.FontSize;
     }
 
     #endregion

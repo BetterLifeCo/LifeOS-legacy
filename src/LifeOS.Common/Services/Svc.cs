@@ -19,30 +19,30 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+// ReSharper disable StaticMemberInGenericType
+// ReSharper disable UnusedTypeParameter
+
+namespace LifeOS.Common.Services
 {
-  using System.Windows;
+  using Configuration;
+  using IO.Diagnostics;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  /// <summary>Convenience singleton with access to the most important services</summary>
+  public static class Svc
   {
-    #region Constructors
+    #region Constants & Statics
 
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
+    /// <summary>The global logger</summary>
+    public static Logger Logger { get; set; }
+
+    /// <summary>The global configuration service (stored in %UserProfile%\LifeOS\Configs\)</summary>
+    public static ConfigurationServiceBase Configuration { get; set; }
 
     #endregion
   }

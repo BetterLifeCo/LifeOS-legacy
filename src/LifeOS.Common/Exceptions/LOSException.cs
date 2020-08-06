@@ -19,30 +19,33 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
-// 
-// 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
-// Modified By:  Alexis
 
 #endregion
 
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Exceptions
 {
-  using System.Windows;
+  using System;
+  using System.Runtime.Serialization;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  [Serializable]
+  public class LOSException : Exception
   {
     #region Constructors
 
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
+    /// <inheritdoc />
+    public LOSException() { }
+
+    /// <inheritdoc />
+    protected LOSException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
+    /// <inheritdoc />
+    public LOSException(string message) : base(message) { }
+
+    /// <inheritdoc />
+    public LOSException(string message, Exception innerException) : base(message, innerException) { }
 
     #endregion
   }

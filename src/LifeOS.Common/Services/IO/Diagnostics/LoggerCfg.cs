@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2020/01/23 08:17
+// Modified On:  2020/02/13 21:01
 // Modified By:  Alexis
 
 #endregion
@@ -30,19 +30,40 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Services.IO.Diagnostics
 {
-  using System.Windows;
+  using System.ComponentModel;
+  using Serilog.Events;
+  using Sys.ComponentModel;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public class LoggerCfg : INotifyPropertyChangedEx
   {
-    #region Constructors
+    #region Properties & Fields - Public
 
-    public MainWindow()
-    {
-      InitializeComponent();
-    }
+    public LogEventLevel LogLevel                 { get; set; } = LogEventLevel.Debug;
+    public bool          LogFirstChanceExceptions { get; set; }
+    public bool          BugReportUserConsent     { get; set; } = false;
+    public int           LogMaxSize               { get; set; } = 5242880;
+
+    #endregion
+
+
+
+
+    #region Properties Impl - Public
+
+    /// <inheritdoc />
+    public bool IsChanged { get; set; }
+
+    #endregion
+
+
+
+
+    #region Events
+
+    /// <inheritdoc />
+    public event PropertyChangedEventHandler PropertyChanged;
 
     #endregion
   }

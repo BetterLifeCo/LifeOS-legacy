@@ -6,7 +6,7 @@
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
 // the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the
+// and/or sell copies of the Software, and to permit persons to whom the 
 // Software is furnished to do so, subject to the following conditions:
 // 
 // The above copyright notice and this permission notice shall be included in
@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2019/01/14 19:15
+// Modified On:  2019/01/24 11:54
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +30,35 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Extensions
 {
-  using System.Windows;
+  using System;
+  using System.Drawing;
+  using System.Drawing.Imaging;
+  using System.IO;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class ImageEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static string ToBase64(this Image  image,
+                                  ImageFormat format)
     {
-      InitializeComponent();
+      using (MemoryStream ms = new MemoryStream())
+      {
+        image.Save(ms, format);
+        return Convert.ToBase64String(ms.ToArray());
+      }
+    }
+
+    public static Image FromBase64(string base64)
+    {
+      using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(base64)))
+      {
+        ms.Seek(0, SeekOrigin.Begin);
+
+        return Image.FromStream(ms);
+      }
     }
 
     #endregion

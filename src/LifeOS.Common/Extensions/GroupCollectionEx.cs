@@ -6,7 +6,7 @@
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
 // the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the
+// and/or sell copies of the Software, and to permit persons to whom the 
 // Software is furnished to do so, subject to the following conditions:
 // 
 // The above copyright notice and this permission notice shall be included in
@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2019/04/22 20:39
+// Modified On:  2019/04/22 20:41
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +30,19 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Extensions
 {
-  using System.Windows;
+  using System.Text.RegularExpressions;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class GroupCollectionEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static string SafeGet(this GroupCollection col, int i)
     {
-      InitializeComponent();
+      return col.Count >= i + 1
+        ? col[i].Value
+        : null;
     }
 
     #endregion

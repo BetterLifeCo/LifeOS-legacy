@@ -6,7 +6,7 @@
 // copy of this software and associated documentation files (the "Software"),
 // to deal in the Software without restriction, including without limitation
 // the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the
+// and/or sell copies of the Software, and to permit persons to whom the 
 // Software is furnished to do so, subject to the following conditions:
 // 
 // The above copyright notice and this permission notice shall be included in
@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2019/02/27 15:05
+// Modified On:  2019/02/27 15:05
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +30,31 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.WPF.Extensions
 {
-  using System.Windows;
+  using System.Windows.Controls;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class ListBoxEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    public static void SelectFirstItem(this ListBox lb)
     {
-      InitializeComponent();
+      if (lb.HasItems)
+      {
+        var item = lb.ItemContainerGenerator.ContainerFromIndex(0);
+
+        if (item == null)
+        {
+          lb.UpdateLayout();
+          lb.ScrollIntoView(lb.Items[0]);
+        }
+        
+        item = lb.ItemContainerGenerator.ContainerFromIndex(0);
+
+        if (item is ListBoxItem lbi)
+          lbi.Focus();
+      }
     }
 
     #endregion

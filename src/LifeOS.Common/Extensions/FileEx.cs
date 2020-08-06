@@ -21,8 +21,8 @@
 // DEALINGS IN THE SOFTWARE.
 // 
 // 
-// Created On:   2020/08/05 20:00
-// Modified On:  2020/08/05 20:56
+// Created On:   2020/03/29 00:21
+// Modified On:  2020/04/07 07:11
 // Modified By:  Alexis
 
 #endregion
@@ -30,18 +30,32 @@
 
 
 
-namespace LifeOS.WPF.Views.Windows
+namespace LifeOS.Common.Extensions
 {
-  using System.Windows;
+  using System.Globalization;
+  using System.IO;
+  using global::Extensions.System.IO;
+  using Sys.Security.Cryptography;
 
-  /// <summary>Interaction logic for MainWindow.xaml</summary>
-  public partial class MainWindow : Window
+  public static class FileEx
   {
-    #region Constructors
+    #region Methods
 
-    public MainWindow()
+    /// <summary>Computes the CRC32 for the given file</summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
+    public static string GetCrc32(FilePath filePath)
     {
-      InitializeComponent();
+      using (var crc32 = new Crc32())
+      {
+        var hash = string.Empty;
+
+        using (var fs = File.Open(filePath.FullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+          foreach (byte b in crc32.ComputeHash(fs))
+            hash += b.ToString("x2", CultureInfo.InvariantCulture).ToLowerInvariant();
+
+        return hash;
+      }
     }
 
     #endregion
