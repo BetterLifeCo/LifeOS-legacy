@@ -16,12 +16,13 @@ using LifeOS.Common.Extensions;
 namespace LifeOS.Common.ViewModels.DayActivityVM
 {
 
-  public partial class DayActivityViewModel : BaseViewModel
+  public partial class DayActivityViewModel : BaseViewModel, IActivityContainer
   {
 
     public ActivityTimeSlot TimeSlot { get; set; }
     public string ActivityTitle { get; set; }
-    public ObservableCollection<DayActivityViewModel> SubActivities { get; set; }
+    public bool CanAcceptChildren { get; set; } = true;
+    public ObservableCollection<DayActivityViewModel> Children { get; set; }
 
     public DayActivityViewModel(DayActivity activity)
     {
@@ -29,7 +30,7 @@ namespace LifeOS.Common.ViewModels.DayActivityVM
 
       this.TimeSlot = activity.TimeSlot;
       this.ActivityTitle = activity.ActivityTitle;
-      this.SubActivities = new ObservableCollection<DayActivityViewModel>(activity.SubActivities.Select(x => new DayActivityViewModel(x)));
+      this.Children = new ObservableCollection<DayActivityViewModel>(activity.SubActivities.Select(x => new DayActivityViewModel(x)));
     }
 
     private void ThrowIfNull(DayActivity activity)
@@ -41,14 +42,14 @@ namespace LifeOS.Common.ViewModels.DayActivityVM
     public void AddSubActivity(DayActivity activity)
     {
 
-      this.SubActivities.Add(new DayActivityViewModel(activity));
+      this.Children.Add(new DayActivityViewModel(activity));
 
     }
 
     public void DeleteSubActivity(DayActivityViewModel activity)
     {
 
-      this.SubActivities.Remove(activity);
+      this.Children.Remove(activity);
 
     }
 

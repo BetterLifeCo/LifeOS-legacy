@@ -72,7 +72,6 @@ namespace LifeOS.WPF.Views.Windows
       
       InitializeComponent();
 
-
       var timeslot = new ActivityTimeSlot();
       timeslot.Duration = NodaTime.Duration.FromHours(1);
       timeslot.Time = new OffsetTime(

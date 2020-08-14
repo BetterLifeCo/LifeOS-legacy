@@ -17,19 +17,19 @@ using System.Windows.Input;
 namespace LifeOS.Common.ViewModels.DayPlanVM
 {
 
-  public partial class DayPlanViewModel : BaseViewModel
+  public partial class DayPlanViewModel : BaseViewModel, IActivityContainer
   {
 
     public DateTime Day { get; set; }
     public bool CanAcceptChildren { get; set; } = true;
-    public ObservableCollection<DayActivityViewModel> Activities { get; set; }
+    public ObservableCollection<DayActivityViewModel> Children { get; set; }
 
     public DayPlanViewModel(DayPlan plan)
     {
       ThrowIfNull(plan);
 
       this.Day = plan.Day;
-      this.Activities = new ObservableCollection<DayActivityViewModel>(plan.Activities.Select(x => new DayActivityViewModel(x)));
+      this.Children = new ObservableCollection<DayActivityViewModel>(plan.Activities.Select(x => new DayActivityViewModel(x)));
     }
 
     private void ThrowIfNull(DayPlan plan)
@@ -50,12 +50,12 @@ namespace LifeOS.Common.ViewModels.DayPlanVM
 
     public void AddActivity(DayActivityViewModel activity)
     {
-      this.Activities.Remove(activity);
+      this.Children.Remove(activity);
     }
 
     public void DeleteActivity(DayActivityViewModel activity)
     {
-      this.Activities.Remove(activity);
+      this.Children.Remove(activity);
     }
 
   }
