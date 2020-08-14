@@ -4,8 +4,165 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                 xmlns:local="clr-namespace:LifeOS"
+                 xmlns:local="clr-namespace:LifeOS.WPF"
+                 xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
                  mc:Ignorable="d"
-                 Title="MainWindow" Height="450" Width="800">
-  <Grid />
+                 Title="LifeOS"
+                 Height="450"
+                 Width="800">
+  <Grid>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="3*"></ColumnDefinition>
+        <ColumnDefinition Width="5"></ColumnDefinition>
+        <ColumnDefinition></ColumnDefinition>
+      </Grid.ColumnDefinitions>
+      
+      <TabControl Grid.Column="0">
+      
+      <!-- Initial Tab -->
+      <TabItem Header="{Binding Plan.Day}">
+
+        <!-- Datagrid of activities -->
+        <DataGrid AutoGenerateColumns="False"
+                  CanUserAddRows="True"
+                  dd:DragDrop.IsDragSource="True"
+                  dd:DragDrop.IsDropTarget="True" 
+                  CanUserDeleteRows="True"
+                  Margin="5"
+                  CanUserResizeColumns="True"
+                  CanUserReorderColumns="False"
+                  dd:DragDrop.DropHandler="{Binding}"
+                  ItemsSource="{Binding Plan.Activities}">
+
+            <!-- TODO: This isn't working -->
+          <DataGrid.RowHeaderTemplate>
+            <DataTemplate>
+              <Expander Expanded="Expander_Expanded" Collapsed="Expander_Collapsed">
+
+              </Expander>
+            </DataTemplate>
+          </DataGrid.RowHeaderTemplate>
+
+          <DataGrid.RowDetailsTemplate>
+            <DataTemplate>
+              
+              <!-- Subactivies nested datagrid -->
+              <DataGrid AutoGenerateColumns="False"
+                        ItemsSource="{Binding SubActivities}"
+                        CanUserDeleteRows="True"
+                        CanUserResizeColumns="True"
+                        dd:DragDrop.DropHandler="{Binding}"
+                        dd:DragDrop.IsDragSource="True"
+                        dd:DragDrop.IsDropTarget="True"
+                        CanUserAddRows="True">
+
+                <DataGrid.Columns>
+
+                  <!-- Start Time -->
+                  <DataGridTextColumn Header="Start Time" 
+                                Binding="{Binding TimeSlot.Time}"/>
+
+                  <!-- Duration -->
+                  <DataGridTextColumn Header="Duration" 
+                                Binding="{Binding TimeSlot.Duration}"/>
+
+                  <!-- Title -->
+                  <DataGridTextColumn Header="Activity" 
+                                Binding="{Binding ActivityTitle}"/>
+
+                </DataGrid.Columns>
+              </DataGrid>
+
+            </DataTemplate>
+          </DataGrid.RowDetailsTemplate>
+          <DataGrid.Columns>
+            
+            <!-- Start Time -->
+            <DataGridTextColumn Header="Start Time" 
+                                Binding="{Binding TimeSlot.Time}"/>
+
+            <!-- Duration -->
+            <DataGridTextColumn Header="Duration" 
+                                Binding="{Binding TimeSlot.Duration}"/>
+
+            <!-- Title -->
+            <DataGridTextColumn Header="Activity" 
+                                Binding="{Binding ActivityTitle}"/>
+            
+          </DataGrid.Columns>
+        </DataGrid>
+
+      </TabItem>
+    </TabControl>
+
+    <StackPanel Grid.Column="2"
+                Margin="5"
+                >
+      <TextBlock Text="ACTIVITY TEMPLATE BLOCKS"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center" />
+
+      <!-- Activity Templates -->
+      <DataGrid AutoGenerateColumns="False"
+              Grid.Column="2"
+              CanUserAddRows="True"
+              CanUserDeleteRows="True"
+              CanUserResizeColumns="True"
+              dd:DragDrop.IsDragSource="True"
+              dd:DragDrop.IsDropTarget="False"
+              dd:DragDrop.DropHandler="{Binding}"
+              CanUserReorderColumns="False"
+              ItemsSource="{Binding ActivityTemplates}">
+
+            <!-- TODO: This isn't working -->
+          <DataGrid.RowHeaderTemplate>
+            <DataTemplate>
+              <Expander Expanded="Expander_Expanded" Collapsed="Expander_Collapsed">
+
+              </Expander>
+            </DataTemplate>
+          </DataGrid.RowHeaderTemplate>
+
+          <DataGrid.RowDetailsTemplate>
+            <DataTemplate>
+              
+              <!-- Subactivies nested datagrid -->
+              <DataGrid AutoGenerateColumns="False"
+                        ItemsSource="{Binding SubActivities}"
+                        CanUserDeleteRows="True"
+                        CanUserResizeColumns="True"
+                        CanUserAddRows="True">
+
+                <DataGrid.Columns>
+
+                  <!-- Duration -->
+                  <DataGridTextColumn Header="Duration" 
+                                Binding="{Binding TimeSlot.Duration}"/>
+
+                  <!-- Title -->
+                  <DataGridTextColumn Header="Activity" 
+                                Binding="{Binding ActivityTitle}"/>
+
+                </DataGrid.Columns>
+              </DataGrid>
+
+            </DataTemplate>
+          </DataGrid.RowDetailsTemplate>
+          <DataGrid.Columns>
+            
+            <!-- Duration -->
+            <DataGridTextColumn Header="Duration" 
+                                Binding="{Binding TimeSlot.Duration}"/>
+
+            <!-- Title -->
+            <DataGridTextColumn Header="Activity" 
+                                Binding="{Binding ActivityTitle}"/>
+            
+          </DataGrid.Columns>
+      </DataGrid>
+      
+    </StackPanel>
+
+  </Grid>
 </mah:MetroWindow>
