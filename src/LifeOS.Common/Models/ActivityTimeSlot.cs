@@ -53,21 +53,19 @@ namespace LifeOS.Common.Models
     /// <summary>
     /// Gets or sets the duration.
     /// </summary>
-    public Duration   Duration { get; set; }
+    public Duration   Duration { get; private set; }
 
     /// <summary>
     /// Gets or sets the time.
     /// </summary>
-    public OffsetTime Time     { get; set; }
+    public OffsetTime Time     { get; private set; }
 
     public ActivityTimeSlot() { }
 
     public ActivityTimeSlot(Duration duration, OffsetTime time)
     {
-
       this.Duration = duration;
       this.Time = time;
-
     }
 
     #endregion
