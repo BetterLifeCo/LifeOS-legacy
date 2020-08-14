@@ -25,6 +25,8 @@ namespace LifeOS.Common.ViewModels.DayActivityVM
 
     public DayActivityViewModel(DayActivity activity)
     {
+      ThrowIfNull(activity);
+
       this.TimeSlot = activity.TimeSlot;
       this.ActivityTitle = activity.ActivityTitle;
       this.SubActivities = new ObservableCollection<DayActivityViewModel>(activity.SubActivities.Select(x => new DayActivityViewModel(x)));

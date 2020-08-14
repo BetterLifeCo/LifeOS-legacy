@@ -53,12 +53,12 @@ namespace LifeOS.Common.Models
     /// <summary>
     /// Gets or sets the duration.
     /// </summary>
-    public Duration   Duration { get; private set; }
+    public Duration   Duration { get; set; }
 
     /// <summary>
     /// Gets or sets the time.
     /// </summary>
-    public OffsetTime Time     { get; private set; }
+    public OffsetTime Time     { get; set; }
 
     public ActivityTimeSlot() { }
 
