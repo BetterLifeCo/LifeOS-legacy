@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 namespace LifeOS.Common.ViewModels
 {
 
-  public class BaseViewModel : INotifyPropertyChangedEx
+  public abstract class BaseViewModel : INotifyPropertyChangedEx
   {
 
     [JsonIgnore]

@@ -33,7 +33,7 @@
                   CanUserResizeColumns="True"
                   CanUserReorderColumns="False"
                   dd:DragDrop.DropHandler="{Binding}"
-                  ItemsSource="{Binding Plan.Activities}">
+                  ItemsSource="{Binding Plan.Children}">
 
             <!-- TODO: This isn't working -->
           <DataGrid.RowHeaderTemplate>
@@ -49,7 +49,7 @@
               
               <!-- Subactivies nested datagrid -->
               <DataGrid AutoGenerateColumns="False"
-                        ItemsSource="{Binding SubActivities}"
+                        ItemsSource="{Binding Children}"
                         CanUserDeleteRows="True"
                         CanUserResizeColumns="True"
                         dd:DragDrop.DropHandler="{Binding}"
@@ -129,7 +129,7 @@
               
               <!-- Subactivies nested datagrid -->
               <DataGrid AutoGenerateColumns="False"
-                        ItemsSource="{Binding SubActivities}"
+                        ItemsSource="{Binding Children}"
                         CanUserDeleteRows="True"
                         CanUserResizeColumns="True"
                         CanUserAddRows="True">

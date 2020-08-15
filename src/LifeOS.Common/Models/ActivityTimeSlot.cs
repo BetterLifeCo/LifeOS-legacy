@@ -64,10 +64,8 @@ namespace LifeOS.Common.Models
 
     public ActivityTimeSlot(Duration duration, OffsetTime time)
     {
-
       this.Duration = duration;
       this.Time = time;
-
     }
 
     #endregion

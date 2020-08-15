@@ -40,6 +40,8 @@ namespace LifeOS.WPF.Views.Windows
   using System.Windows.Media;
   using LifeOS.Common.Models;
   using LifeOS.Common.ViewModels;
+  using LifeOS.Common.ViewModels.DayActivityVM;
+  using LifeOS.Common.ViewModels.DayPlanVM;
   using MahApps.Metro.Controls;
   using NodaTime;
 
@@ -69,7 +71,6 @@ namespace LifeOS.WPF.Views.Windows
     {
       
       InitializeComponent();
-
 
       var timeslot = new ActivityTimeSlot();
       timeslot.Duration = NodaTime.Duration.FromHours(1);
